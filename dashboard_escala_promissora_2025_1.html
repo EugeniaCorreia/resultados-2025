@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultados 2025 · Escala Promissora, Lda</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:       #1A5FA8;
+    --blue-mid:   #2E7DD1;
+    --blue-light: #5BA3E8;
+    --sky:        #EAF3FC;
+    --bg:         #F4F8FD;
+    --bg2:        #FFFFFF;
+    --bg3:        #EDF4FB;
+    --bg4:        #D9EBFA;
+    --text:       #0D2B4E;
+    --text-muted: #6A8BAD;
+    --red:        #C0392B;
+    --green:      #1A7A4A;
+    --border:     rgba(26,95,168,0.13);
+    --shadow:     0 2px 16px rgba(26,95,168,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; padding:36px 32px 56px; }
+
+  .header { display:flex; align-items:flex-end; justify-content:space-between; padding-bottom:24px; border-bottom:2px solid var(--blue-light); margin-bottom:32px; }
+  .header-left h1 { font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:900; letter-spacing:-.4px; color:var(--blue); line-height:1.1; }
+  .header-left h1 span { color:var(--blue-mid); }
+  .header-left p { font-size:.73rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; margin-top:5px; }
+  .header-badge { background:var(--blue); border-radius:8px; padding:10px 20px; text-align:right; }
+  .header-badge span { display:block; font-size:.65rem; color:rgba(255,255,255,.65); text-transform:uppercase; letter-spacing:1.5px; }
+  .header-badge strong { font-size:1rem; color:#fff; font-weight:600; }
+
+  .grid-top    { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:18px; }
+  .grid-middle { display:grid; grid-template-columns:2fr 1fr 1fr;  gap:14px; margin-bottom:18px; }
+  .grid-bottom { display:grid; grid-template-columns:1fr 1fr;      gap:14px; }
+
+  .card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:20px 22px; position:relative; overflow:hidden; box-shadow:var(--shadow); }
+  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue) 0%,var(--blue-light) 100%); }
+  .card.red-top::before   { background:linear-gradient(90deg,var(--red) 0%,#e57373 100%); }
+  .card.green-top::before { background:linear-gradient(90deg,var(--green) 0%,#52b788 100%); }
+
+  .kpi-label { font-size:.65rem; text-transform:uppercase; letter-spacing:1.8px; color:var(--text-muted); margin-bottom:8px; }
+  .kpi-value { font-family:'Playfair Display',serif; font-size:1.85rem; font-weight:700; line-height:1; color:var(--text); }
+  .kpi-value.negative { color:var(--red); }
+  .kpi-value.positive { color:var(--green); }
+  .kpi-value.blue     { color:var(--blue); }
+  .kpi-sub  { font-size:.7rem; color:var(--text-muted); margin-top:5px; }
+  .kpi-icon { position:absolute; bottom:14px; right:16px; font-size:2rem; opacity:.08; }
+
+  .section-title { font-family:'Playfair Display',serif; font-size:.9rem; color:var(--blue); margin-bottom:14px; display:flex; align-items:center; gap:8px; font-weight:700; }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  .bar-group { margin-bottom:10px; }
+  .bar-label-row { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+  .bar-label  { font-size:.71rem; color:var(--text); }
+  .bar-amount { font-size:.71rem; font-weight:600; color:var(--text-muted); }
+  .bar-track  { height:6px; background:var(--bg3); border-radius:4px; overflow:hidden; }
+  .bar-fill   { height:100%; border-radius:4px; }
+  .bar-fill.blue  { background:linear-gradient(90deg,var(--blue),var(--blue-light)); }
+  .bar-fill.green { background:linear-gradient(90deg,var(--green),#52b788); }
+  .bar-fill.muted { background:var(--bg4); }
+
+  .pl-table { width:100%; border-collapse:collapse; }
+  .pl-table tr { border-bottom:1px solid rgba(26,95,168,.06); }
+  .pl-table tr:last-child { border-bottom:none; }
+  .pl-table td { padding:7px 4px; font-size:.76rem; }
+  .pl-table td:last-child { text-align:right; font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .pl-table .total-row td { font-weight:700; font-size:.83rem; border-top:1px solid var(--border); padding-top:10px; }
+  .pl-table .indent { padding-left:14px; color:var(--text-muted); }
+  .pl-table .hl-row td { color:var(--blue); }
+  .pl-table .neg { color:var(--red); }
+  .pl-table .pos { color:var(--green); }
+
+  .legend { flex:1; margin-top:12px; }
+  .legend-item { display:flex; align-items:center; gap:7px; margin-bottom:7px; font-size:.7rem; }
+  .legend-dot  { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+  .legend-pct  { margin-left:auto; font-weight:600; color:var(--text-muted); font-size:.67rem; }
+
+  .highlight-box { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:12px 14px; margin-bottom:8px; }
+  .highlight-box:last-child { margin-bottom:0; }
+  .highlight-box .hb-label { font-size:.63rem; text-transform:uppercase; letter-spacing:1.4px; color:var(--text-muted); margin-bottom:3px; }
+  .highlight-box .hb-value { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; }
+  .highlight-box .hb-pct   { font-size:.68rem; color:var(--text-muted); margin-top:1px; }
+
+  .footer { margin-top:36px; padding-top:16px; border-top:1px solid var(--border); font-size:.65rem; color:var(--text-muted); display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Escala <span>Promissora</span>, Lda</h1>
+    <p>Resultados Contabilísticos · Exercício 2025</p>
+  </div>
+  <div class="header-badge">
+    <span>Estimativa IRC</span>
+    <strong>Dezembro 2025</strong>
+  </div>
+</div>
+
+<div class="grid-top">
+  <div class="card">
+    <div class="kpi-label">Volume de Negócios</div>
+    <div class="kpi-value blue">138 531 €</div>
+    <div class="kpi-sub">Prestações de serviços (líq.)</div>
+    <div class="kpi-icon">📊</div>
+  </div>
+  <div class="card red-top">
+    <div class="kpi-label">Resultado Líquido</div>
+    <div class="kpi-value negative">−32 331 €</div>
+    <div class="kpi-sub">Prejuízo do exercício</div>
+    <div class="kpi-icon">📉</div>
+  </div>
+  <div class="card red-top">
+    <div class="kpi-label">EBITDA</div>
+    <div class="kpi-value negative">−31 549 €</div>
+    <div class="kpi-sub">Antes dep. e gastos financ.</div>
+    <div class="kpi-icon">⚖️</div>
+  </div>
+  <div class="card">
+    <div class="kpi-label">IRC a Pagar</div>
+    <div class="kpi-value blue">45 €</div>
+    <div class="kpi-sub">Tributações autónomas</div>
+    <div class="kpi-icon">🏛️</div>
+  </div>
+</div>
+
+<div class="grid-middle">
+  <div class="card">
+    <div class="section-title">Demonstração de Resultados</div>
+    <table class="pl-table">
+      <tr><td>Prestações de serviços</td><td class="pos">138 531 €</td></tr>
+      <tr><td>Outros rendimentos</td><td class="pos">0 €</td></tr>
+      <tr class="total-row hl-row"><td>Total Rendimentos</td><td>138 531 €</td></tr>
+      <tr style="height:6px;"><td colspan="2"></td></tr>
+      <tr><td>CMVMC (mercadorias)</td><td class="neg">−55 066 €</td></tr>
+      <tr><td>Fornecimentos e serv. externos</td><td class="neg">−97 045 €</td></tr>
+      <tr><td>Gastos com pessoal</td><td class="neg">−17 704 €</td></tr>
+      <tr><td>Outros gastos e perdas</td><td class="neg">−266 €</td></tr>
+      <tr class="total-row"><td>EBITDA</td><td class="neg">−31 549 €</td></tr>
+      <tr><td class="indent">Depreciações</td><td class="neg">−413 €</td></tr>
+      <tr><td class="indent">Gastos financeiros</td><td class="neg">−324 €</td></tr>
+      <tr><td class="indent">Tributações autónomas</td><td class="neg">−45 €</td></tr>
+      <tr class="total-row"><td>Resultado Líquido</td><td class="neg">−32 331 €</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Estrutura de Custos</div>
+    <svg width="110" height="110" viewBox="0 0 110 110" style="margin:0 auto;display:block;">
+      <circle cx="55" cy="55" r="42" fill="none" stroke="#C0392B" stroke-width="15"
+        stroke-dasharray="85.3 189.7" stroke-dashoffset="0" transform="rotate(-90 55 55)"/>
+      <circle cx="55" cy="55" r="42" fill="none" stroke="#1A5FA8" stroke-width="15"
+        stroke-dasharray="150.5 124.5" stroke-dashoffset="-85.3" transform="rotate(-90 55 55)"/>
+      <circle cx="55" cy="55" r="42" fill="none" stroke="#1A7A4A" stroke-width="15"
+        stroke-dasharray="27.5 247.5" stroke-dashoffset="-235.8" transform="rotate(-90 55 55)"/>
+      <circle cx="55" cy="55" r="42" fill="none" stroke="#A8C8E8" stroke-width="15"
+        stroke-dasharray="1.7 273.3" stroke-dashoffset="-263.3" transform="rotate(-90 55 55)"/>
+      <text x="55" y="51" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="#0D2B4E" font-weight="700">Total</text>
+      <text x="55" y="64" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A8BAD">170 080 €</text>
+    </svg>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#C0392B;"></div>CMVMC<span class="legend-pct">32,4%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1A5FA8;"></div>FSE<span class="legend-pct">57,1%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1A7A4A;"></div>Pessoal<span class="legend-pct">10,4%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#A8C8E8;"></div>Outros<span class="legend-pct">0,2%</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Balanço Resumido</div>
+    <table class="pl-table">
+      <tr><td colspan="2" style="font-size:.62rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--text-muted);padding-bottom:5px;">Ativo</td></tr>
+      <tr><td class="indent">Ativo não corrente</td><td>8 513 €</td></tr>
+      <tr><td class="indent">Ativo corrente</td><td>35 746 €</td></tr>
+      <tr class="total-row hl-row"><td>Total Ativo</td><td>44 259 €</td></tr>
+      <tr style="height:6px;"><td colspan="2"></td></tr>
+      <tr><td colspan="2" style="font-size:.62rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--text-muted);padding-bottom:5px;">Passivo &amp; Cap. Próprio</td></tr>
+      <tr><td class="indent">Capital Próprio</td><td class="neg">−29 331 €</td></tr>
+      <tr><td class="indent">Passivo não corrente</td><td>29 138 €</td></tr>
+      <tr><td class="indent">Passivo corrente</td><td>44 452 €</td></tr>
+      <tr class="total-row hl-row"><td>Total P + CP</td><td>44 259 €</td></tr>
+      <tr style="height:6px;"><td colspan="2"></td></tr>
+      <tr><td class="indent" style="font-size:.68rem;color:var(--text-muted);">Dívida bancária</td><td style="color:var(--text-muted);font-size:.68rem;">29 138 €</td></tr>
+      <tr><td class="indent" style="font-size:.68rem;color:var(--text-muted);">Caixa e depósitos</td><td style="color:var(--text-muted);font-size:.68rem;">20 575 €</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="grid-bottom">
+  <div class="card">
+    <div class="section-title">Fornecimentos e Serviços Externos · 97 045 €</div>
+    <div class="bar-group">
+      <div class="bar-label-row">
+        <span class="bar-label">🔨 Trabalhos especializados <span style="font-size:.62rem;color:var(--blue);background:var(--sky);border-radius:3px;padding:1px 5px;">destaque</span></span>
+        <span class="bar-amount">63 556 €</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:65.5%;"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label-row">
+        <span class="bar-label">👤 Honorários <span style="font-size:.62rem;color:var(--blue);background:var(--sky);border-radius:3px;padding:1px 5px;">destaque</span></span>
+        <span class="bar-amount">25 377 €</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:26.1%;"></div></div>
+    </div>
+    <div style="border-top:1px dashed var(--border);margin:10px 0 8px;"></div>
+    <div style="font-size:.64rem;color:var(--blue);font-weight:600;margin-bottom:8px;">↑ Subcontratos: 88 933 € · 91,6% do FSE total</div>
+    <div class="bar-group">
+      <div class="bar-label-row"><span class="bar-label">🏠 Rendas e alugueres</span><span class="bar-amount">5 600 €</span></div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:5.8%;"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label-row"><span class="bar-label">📋 Contencioso e notariado</span><span class="bar-amount">453 €</span></div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:0.5%;"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label-row"><span class="bar-label">🎭 Despesas de representação</span><span class="bar-amount">156 €</span></div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:0.2%;"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label-row"><span class="bar-label">🚗 Deslocações e estadas</span><span class="bar-amount">692 €</span></div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:0.7%;"></div></div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-label-row"><span class="bar-label">📦 Materiais e outros</span><span class="bar-amount">1 211 €</span></div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:1.2%;"></div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px;">
+    <div class="card">
+      <div class="section-title">Gastos com Pessoal · 17 704 €</div>
+      <div class="bar-group">
+        <div class="bar-label-row"><span class="bar-label">Remunerações dos órgãos sociais</span><span class="bar-amount">14 279 €</span></div>
+        <div class="bar-track"><div class="bar-fill green" style="width:80.7%;"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label-row"><span class="bar-label">Encargos segurança social</span><span class="bar-amount">2 851 €</span></div>
+        <div class="bar-track"><div class="bar-fill green" style="width:16.1%;"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label-row"><span class="bar-label">Seguros acidentes trabalho</span><span class="bar-amount">573 €</span></div>
+        <div class="bar-track"><div class="bar-fill green" style="width:3.2%;"></div></div>
+      </div>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);display:flex;gap:16px;">
+        <div style="flex:1;">
+          <div style="font-size:.63rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.2px;">% Vol. Negócios</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--green);">12,8%</div>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:.63rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.2px;">% Total Gastos</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--green);">10,4%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Rácios e Indicadores</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="highlight-box">
+          <div class="hb-label">Margem Líquida</div>
+          <div class="hb-value" style="color:var(--red);">−23,3%</div>
+          <div class="hb-pct">Resultado / Vol. neg.</div>
+        </div>
+        <div class="highlight-box">
+          <div class="hb-label">Gastos Financeiros</div>
+          <div class="hb-value" style="color:var(--text);">324 €</div>
+          <div class="hb-pct">Juros empréstimo BCP</div>
+        </div>
+        <div class="highlight-box">
+          <div class="hb-label">Caixa &amp; Depósitos</div>
+          <div class="hb-value" style="color:var(--blue);">20 575 €</div>
+          <div class="hb-pct">Liquidez imediata</div>
+        </div>
+        <div class="highlight-box">
+          <div class="hb-label">Dívida Líquida</div>
+          <div class="hb-value" style="color:var(--red);">8 564 €</div>
+          <div class="hb-pct">Empréstimo − caixa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Fonte: Estimativa IRC 2025 · Balancete acumulado dezembro 2025 · Valores expressos em euros</span>
+  <span>Escala Promissora, Lda</span>
+</div>
+</body>
+</html>
